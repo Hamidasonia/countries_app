@@ -5,7 +5,7 @@ Flutter application with fake login and countries list using GetX, MVC pattern, 
 ## Preview
 
 <p align="center">
-  <img src="assets/result.gif" width="300" alt="App Demo">
+  <img src="assets/result.gif" width="600" alt="App Demo">
 </p>
 
 ---
