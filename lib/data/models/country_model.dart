@@ -1,49 +1,45 @@
-class CountryModel {
-  final String name;
-  final String capital;
-  final String flag;
+import '../entities/country_entity.dart';
 
-  CountryModel({
-    required this.name,
-    required this.capital,
-    required this.flag,
+class CountryModel extends CountryEntity {
+  const CountryModel({
+    required super.name,
+    required super.capital,
+    required super.flag,
   });
 
   factory CountryModel.fromJson(Map<String, dynamic> json) {
-    
-    String countryName = 'Unknown Country';
-    if (json['name'] != null) {
-      if (json['name'] is Map) {
-        countryName = json['name']['common'] ?? json['name']['official'] ?? 'Unknown Country';
-      } else {
-        countryName = json['name'].toString();
+    try {
+      String name = '-';
+      String capital = '-';
+      String flag = '';
+
+      // Extract name
+      if (json['name'] is Map && json['name']['common'] != null) {
+        name = json['name']['common'].toString();
       }
-    }
 
-    String capitalCity = 'N/A';
-    if (json['capital'] != null) {
-      if (json['capital'] is List) {
-        List capitalList = json['capital'] as List;
-        // INI KUNCINYA: Cek dulu jumlah baris/length sebelum ambil indeks [0]
-        if (capitalList.isNotEmpty) {
-          capitalCity = capitalList[0].toString();
-        }
-      } else if (json['capital'] is String) {
-        capitalCity = json['capital'].toString();
+      // Extract capital
+      if (json['capital'] is List && (json['capital'] as List).isNotEmpty) {
+        capital = (json['capital'] as List)[0].toString();
       }
-    }
 
-    String flagUrl = '';
-    if (json['flags'] != null && json['flags'] is Map) {
-      flagUrl = json['flags']['png'] ?? json['flags']['svg'] ?? '';
-    } else if (json['flag'] != null) {
-      flagUrl = json['flag'].toString();
-    }
+      // Extract flag
+      if (json['flags'] is Map && json['flags']['png'] != null) {
+        flag = json['flags']['png'].toString();
+      }
 
-    return CountryModel(
-      name: countryName,
-      capital: capitalCity,
-      flag: flagUrl,
-    );
+      return CountryModel(
+        name: name,
+        capital: capital,
+        flag: flag,
+      );
+    } catch (e) {
+      print('Error parsing country: $e');
+      return const CountryModel(
+        name: '-',
+        capital: '-',
+        flag: '',
+      );
+    }
   }
 }
