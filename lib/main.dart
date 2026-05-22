@@ -3,24 +3,31 @@ import 'package:get/get.dart';
 
 import 'core/routes/app_pages.dart';
 import 'core/routes/app_routes.dart';
+import 'core/services/session_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(MyApp());
+  final isLogin = await SessionService.isLogin();
+
+  runApp(MyApp(isLogin: isLogin));
 }
 
 class MyApp extends StatelessWidget {
+  final bool isLogin;
 
   const MyApp({
-    super.key
+    super.key,
+    required this.isLogin,
   });
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.home,
+      initialRoute: isLogin
+          ? AppRoutes.home
+          : AppRoutes.login,
       getPages: AppPages.pages,
     );
   }
