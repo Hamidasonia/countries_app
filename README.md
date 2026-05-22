@@ -1,17 +1,43 @@
-# countries_app
+# Countries App 🌍
 
-A new Flutter project.
+Flutter application with fake login and countries list using GetX, MVC pattern, Dio, SharedPreferences, and Equatable.
 
-## Getting Started
+## Preview
 
-This project is a starting point for a Flutter application.
+<p align="center">
+  <img src="assets/gif/result.gif" width="300" alt="App Demo">
+</p>
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Features
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+✅ Fake Login  
+✅ Save Login Session using SharedPreferences  
+✅ Auto Redirect when already login  
+✅ Countries List from REST API  
+✅ Display Country Name  
+✅ Display Capital City  
+✅ Display Country Flag  
+✅ Pull To Refresh  
+✅ Logout Feature  
+
+---
+
+## Tech Stack
+
+- Flutter
+- GetX
+- Dio
+- SharedPreferences
+- Equatable
+- MVC Pattern
+
+---
+
+## API
+
+Using public API from:
+
+```txt
+https://restcountries.com/v3.1/all?fields=name,capital,currencies,flags
